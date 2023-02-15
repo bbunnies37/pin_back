@@ -1,4 +1,4 @@
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://root:1234@cluster0.lapz5xj.mongodb.net/memberdb?retryWrites=true&w=majority
+      uri: mongodb+srv://root:Qjsltm37@cluster0.b5uvsbk.mongodb.net/pinterestdb?retryWrites=true&w=majority
