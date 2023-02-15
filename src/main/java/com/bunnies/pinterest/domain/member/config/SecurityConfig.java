@@ -1,14 +1,18 @@
 package com.bunnies.pinterest.domain.member.config;
+import com.bunnies.pinterest.domain.member.config.jwt.JwtAuthFilter;
+import com.bunnies.pinterest.domain.member.config.jwt.JwtTokenProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @RequiredArgsConstructor
 @Configuration
 public class SecurityConfig {
+    private final JwtTokenProvider jwtTokenProvider;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -19,12 +23,12 @@ public class SecurityConfig {
                 .formLogin().disable()
                 .httpBasic().disable()
 
-                .authorizeRequests()
-                .anyRequest().permitAll()
-                //.antMatchers("join/**","/login/**","/index/**").permitAll()
-                //.anyRequest().authenticated()
+                .authorizeHttpRequests()
+                    .requestMatchers("/member/join/**","/member/login/**","/index/**").permitAll()
+                    .anyRequest().authenticated()
         ;
 
+        http.addFilterBefore(new JwtAuthFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
 
