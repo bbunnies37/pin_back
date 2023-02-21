@@ -28,6 +28,10 @@ public class SecurityConfig {
                 .authorizeHttpRequests()
                     .requestMatchers("/member/join/**","/member/login/**","/index/**").permitAll()
                     .anyRequest().authenticated()
+                .and()
+
+                .logout()
+                .logoutSuccessUrl("/index")
         ;
 
         http.addFilterBefore(new JwtAuthFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
