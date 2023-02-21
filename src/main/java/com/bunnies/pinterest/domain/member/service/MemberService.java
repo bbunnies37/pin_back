@@ -23,7 +23,7 @@ public class MemberService {
     }
 
     public String login(MemberLoginDto requestDto) {
-        Member member = memberRepository.findByEmail(requestDto.email())
+        var member = memberRepository.findByEmail(requestDto.email())
                 .orElseThrow(() -> new IllegalArgumentException("가입되지 않은 email 입니다."));
         if( !passwordEncoder.matches(requestDto.password(), member.getPassword()) ) {
             throw new IllegalArgumentException("잘못된 비밀번호 입니다.");
