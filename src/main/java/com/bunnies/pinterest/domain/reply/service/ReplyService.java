@@ -1,18 +1,16 @@
 package com.bunnies.pinterest.domain.reply.service;
 
-import com.bunnies.pinterest.domain.reply.repository.ReplyRepository;
+
 import com.bunnies.pinterest.domain.reply.dto.CreateReplyRequestDto;
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import com.bunnies.pinterest.domain.reply.entity.Reply;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
-@RequiredArgsConstructor
-@Service
-public class ReplyService {
-    private final ReplyRepository ReplyRepository;
+public interface ReplyService {
 
-    public String createReply(CreateReplyRequestDto requestDto) {
-        //requestDto.setPassword(passwordEncoder.encode(requestDto.getPassword()));
-        ReplyRepository.save(requestDto.toEntity());
-        return null;
-    }
+    //Page<Reply> findReplyList(Pageable pageable);
+    //Reply findReplybyReplyId(String replyId);
+
+    String createReply(CreateReplyRequestDto replyEequestDto);
 }
+

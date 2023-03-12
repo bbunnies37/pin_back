@@ -12,7 +12,7 @@ public class CreateReplyRequestDto {
     private String targetReplyId;
     private String userId;
     private String replyVal;
-    private int likeNum;
+    private int likeNum = 0;
 
     public Reply toEntity() {
         return Reply.builder()
