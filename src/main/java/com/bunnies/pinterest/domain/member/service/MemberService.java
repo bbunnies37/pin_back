@@ -4,6 +4,7 @@ import com.bunnies.pinterest.domain.member.config.jwt.JwtTokenProvider;
 import com.bunnies.pinterest.domain.member.dto.MemberDto;
 import com.bunnies.pinterest.domain.member.dto.MemberJoinRequestDto;
 import com.bunnies.pinterest.domain.member.dto.MemberLoginDto;
+import com.bunnies.pinterest.domain.member.dto.MemberProfileDto;
 import com.bunnies.pinterest.domain.member.entity.Member;
 import com.bunnies.pinterest.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -44,6 +45,7 @@ public class MemberService {
         var member = memberRepository.findByEmail(memberEmail).orElseThrow();
         return toDto(member);
     }
+
     public MemberDto toDto(Member member) {
         return new MemberDto(member.getEmail(), member.getName(), member.getAge());
     }
