@@ -26,7 +26,7 @@ public class SecurityConfig {
                 .httpBasic().disable()
 
                 .authorizeHttpRequests()
-                    .requestMatchers("/member/join/**","/member/login/**","/index/**").permitAll()
+                    .requestMatchers(PERMIT_URL_ARRAY).permitAll()
                     .anyRequest().authenticated()
                 .and()
 
@@ -37,5 +37,11 @@ public class SecurityConfig {
         http.addFilterBefore(new JwtAuthFilter(jwtTokenProvider), UsernamePasswordAuthenticationFilter.class);
         return http.build();
     }
+
+    private static final String[] PERMIT_URL_ARRAY = {
+            "/member/join/**",
+            "/member/login/**",
+            "/index/**"
+    };
 
 }

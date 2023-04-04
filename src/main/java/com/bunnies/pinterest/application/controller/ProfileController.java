@@ -1,7 +1,7 @@
 package com.bunnies.pinterest.application.controller;
 
 import com.bunnies.pinterest.application.usecase.GetMemberProfileUsecase;
-import com.bunnies.pinterest.domain.member.dto.MemberProfileDto;
+import com.bunnies.pinterest.domain.member.dto.MemberMyPageDto;
 import com.bunnies.pinterest.domain.member.entity.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -19,7 +19,7 @@ public class ProfileController {
     final private GetMemberProfileUsecase getUserProfileUsecase;
 
     @GetMapping("/")
-    public MemberProfileDto getMemberProfile(@AuthenticationPrincipal Member member) {
+    public MemberMyPageDto getMemberProfile(@AuthenticationPrincipal Member member) {
         log.info("email : {}",member.getEmail());
 
         return getUserProfileUsecase.memberProfileDto(member);

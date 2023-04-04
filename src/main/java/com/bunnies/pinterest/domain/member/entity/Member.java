@@ -27,9 +27,14 @@ public class Member implements UserDetails {
     private String id;
 
     private String email;
-    private String name;
+    private String picture;
+
+    private String userName;
+    private String firstName;
+    private String lastName;
+
     private String password;
-    private int age;
+    private String birthday;
     private List<String> category;
 
     @Builder.Default

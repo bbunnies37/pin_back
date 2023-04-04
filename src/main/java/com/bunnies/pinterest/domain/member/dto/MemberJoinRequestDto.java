@@ -13,16 +13,20 @@ public class MemberJoinRequestDto{
     private String email;
     @Setter
     private String password;
-    private String name;
-    private int age;
+
+    @Setter
+    private String userName;
+    private String firstName;
+    private String birthday;
     private List<String> category;
 
     public Member toEntity() {
         return Member.builder()
                 .email(email)
-                .name(name)
+                .userName(userName)
+                .firstName(firstName)
                 .password(password)
-                .age(age)
+                .birthday(birthday)
                 .category(category)
                 .roles(Collections.singletonList("ROLE_USER"))
                 .build();
