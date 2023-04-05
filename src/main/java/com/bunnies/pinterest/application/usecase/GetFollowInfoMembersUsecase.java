@@ -17,21 +17,21 @@ public class GetFollowInfoMembersUsecase {
     final private FollowService followService;
 
 
-    public List<MemberDto> executeFollower(String memberEmail) {
-        var follows = followService.getFollowers(memberEmail);
-        var memberEmails = follows
+    public List<MemberDto> executeFollower(String memberEmailId) {
+        var follows = followService.getFollowers(memberEmailId);
+        var memberEmailIds = follows
                 .stream()
-                .map(Follow::getFromMemberEmail)
+                .map(Follow::getFromMemberEmailId)
                 .collect(Collectors.toList());
-        return memberService.getMembers(memberEmails);
+        return memberService.getMembers(memberEmailIds);
     }
 
-    public List<MemberDto> executeFollowing(String memberEmail) {
-        var follows = followService.getFollowings(memberEmail);
-        var memberEmails = follows
+    public List<MemberDto> executeFollowing(String memberEmailId) {
+        var follows = followService.getFollowings(memberEmailId);
+        var memberEmailIds = follows
                 .stream()
-                .map(Follow::getToMemberEmail)
+                .map(Follow::getToMemberEmailId)
                 .collect(Collectors.toList());
-        return memberService.getMembers(memberEmails);
+        return memberService.getMembers(memberEmailIds);
     }
 }

@@ -29,7 +29,7 @@ public class Member implements UserDetails {
     private String email;
     private String picture;
 
-    private String userName;
+    private String emailId;
     private String firstName;
     private String lastName;
 
@@ -37,6 +37,8 @@ public class Member implements UserDetails {
     private String birthday;
     private List<String> category;
 
+    private String introduction;
+    private String website;
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 

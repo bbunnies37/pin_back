@@ -13,8 +13,8 @@ public class CreateFollowMemberUsecase {
     final private FollowService followService;
 
     public void execute(FollowDto followDto) {
-        var fromMember = memberService.getMember(followDto.fromMemberEmail());
-        var toMember = memberService.getMember(followDto.toMemberEmail());
+        var fromMember = memberService.getMember(followDto.fromMemberEmailId());
+        var toMember = memberService.getMember(followDto.toMemberEmailId());
         followService.create(fromMember, toMember);
     }
 }

@@ -21,17 +21,17 @@ public class FollowController {
     @PostMapping("/follow")
     public List<MemberDto> register(@RequestBody FollowDto followDto) {
         createFollowMemberUsecase.execute(followDto);
-        return getFollowInfoMembersUsecase.executeFollower(followDto.fromMemberEmail());
+        return getFollowInfoMembersUsecase.executeFollower(followDto.fromMemberEmailId());
     }
 
-    @GetMapping("/follower/members")
-    public List<MemberDto> getFollowers(@AuthenticationPrincipal Member member) {
+    @GetMapping("/follower/{emailId}")
+    public List<MemberDto> getFollowers(@PathVariable String emailId) {
        // log.info("email222 : {}",member.getEmail());
-        return getFollowInfoMembersUsecase.executeFollower(member.getEmail());
+        return getFollowInfoMembersUsecase.executeFollower(emailId);
     }
 
-    @GetMapping("/following/members")
-    public List<MemberDto> getFollowings(@AuthenticationPrincipal Member member) {
-        return getFollowInfoMembersUsecase.executeFollowing(member.getEmail());
+    @GetMapping("/following/{emailId}")
+    public List<MemberDto> getFollowings(@PathVariable String emailId) {
+        return getFollowInfoMembersUsecase.executeFollowing(emailId);
     }
 }

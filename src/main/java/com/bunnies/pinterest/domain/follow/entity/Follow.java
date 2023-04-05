@@ -14,14 +14,14 @@ public class Follow {
     @Id
     private String id;
 
-    private String fromMemberEmail;
+    private String fromMemberEmailId;
 
-    private String toMemberEmail;
+    private String toMemberEmailId;
 
     @Builder
-    public Follow(String id, String fromMemberEmail, String toMemberEmail) {
+    public Follow(String id, String fromMemberEmailId, String toMemberEmailId) {
         this.id = id;
-        this.fromMemberEmail = fromMemberEmail;
-        this.toMemberEmail = toMemberEmail;
+        this.fromMemberEmailId = fromMemberEmailId;
+        this.toMemberEmailId = toMemberEmailId;
     }
 }

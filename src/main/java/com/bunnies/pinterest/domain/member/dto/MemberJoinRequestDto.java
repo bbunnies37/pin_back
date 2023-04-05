@@ -15,16 +15,19 @@ public class MemberJoinRequestDto{
     private String password;
 
     @Setter
-    private String userName;
+    private String emailId;
     private String firstName;
+
     private String birthday;
     private List<String> category;
 
     public Member toEntity() {
         return Member.builder()
                 .email(email)
-                .userName(userName)
+
+                .emailId(emailId)
                 .firstName(firstName)
+
                 .password(password)
                 .birthday(birthday)
                 .category(category)

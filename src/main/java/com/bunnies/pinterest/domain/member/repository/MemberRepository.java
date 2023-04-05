@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface MemberRepository extends MongoRepository<Member, String> {
     Optional<Member> findByEmail(String email);
+    List<Member> findAllByEmailIdIn(List<String> memberEmailIds);
 
-    List<Member> findAllByEmailIn(List<String> memberEmails);
+    Optional<Member> findByEmailId(String emailId);
 }

@@ -1,4 +1,4 @@
 package com.bunnies.pinterest.domain.follow.dto;
 
-public record FollowDto(String fromMemberEmail,String toMemberEmail) {
+public record FollowDto(String fromMemberEmailId ,String toMemberEmailId) {
 }

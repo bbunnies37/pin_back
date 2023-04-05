@@ -14,15 +14,15 @@ public class GetMemberProfileUsecase {
     final private MemberService memberService;
     final private FollowService followService;
 
-    public MemberMyPageDto memberProfileDto(Member member){
-        var followerCnt = followService.getFollowers(member.getEmail()).size();
-        var followingCnt = followService.getFollowings(member.getEmail()).size();
+    public MemberMyPageDto memberProfileDto(String emailId){
+        var memberDto = memberService.getMember(emailId);
+        var followerCnt = followService.getFollowers(memberDto.emailId()).size();
+        var followingCnt = followService.getFollowings(memberDto.emailId()).size();
 
-
-        return new MemberMyPageDto(member.getPicture() ,
-                                    member.getUsername(),
-                                    member.getFirstName(),
-                                    member.getLastName(),
+        return new MemberMyPageDto( memberDto.picture() ,
+                                    memberDto.emailId(),
+                                    memberDto.firstName(),
+                                    memberDto.lastName(),
                                     followerCnt ,
                                     followingCnt);
     }
