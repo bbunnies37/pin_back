@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -29,6 +30,7 @@ public class Member implements UserDetails {
     private String email;
     private String picture;
 
+    @Indexed(unique=true)
     private String emailId;
     private String firstName;
     private String lastName;
@@ -74,4 +76,11 @@ public class Member implements UserDetails {
         return true;
     }
 
+    public void update(String emailId, String firstName, String lastName, String introduction, String website) {
+        this.emailId = emailId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.introduction = introduction;
+        this.website = website;
+    }
 }

@@ -23,6 +23,8 @@ public class GetMemberProfileUsecase {
                                     memberDto.emailId(),
                                     memberDto.firstName(),
                                     memberDto.lastName(),
+                                    memberDto.introduction(),
+                                    memberDto.website(),
                                     followerCnt ,
                                     followingCnt);
     }

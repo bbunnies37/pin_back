@@ -7,6 +7,7 @@ import com.bunnies.pinterest.domain.member.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -51,12 +52,20 @@ public class MemberService {
         return new MemberDto(member.getPicture(),
                             member.getEmailId(),
                             member.getFirstName(),
-                            member.getLastName());
+                            member.getLastName(),
+                            member.getIntroduction(),
+                            member.getWebsite()
+        );
     }
 
+    @Transactional
     public String update(MemberPublicProfileDto requestDto) {
-        memberRepository.save(requestDto.toEntity());
-
-        return requestDto.getEmailId();
+        String emailId = requestDto.getEmailId();
+        Member member = memberRepository.findByEmailId(emailId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("해당 아이디가 존재하지 않습니다. emailId = " + emailId));
+        member.update(requestDto.getEmailId(), requestDto.getFirstName(), requestDto.getLastName(), requestDto.getIntroduction(), requestDto.getWebsite());
+        memberRepository.save(member);
+        return member.getEmailId();
     }
 }

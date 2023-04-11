@@ -1,6 +1,7 @@
 package com.bunnies.pinterest.domain.member.dto;
 
 import com.bunnies.pinterest.domain.member.entity.Member;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,14 +14,13 @@ public class MemberPublicProfileDto {
     private String introduction;
     private String website;
 
-    public Member toEntity() {
-        return Member.builder()
-                .emailId(emailId)
-                .firstName(firstName)
-                .lastName(lastName)
-                .introduction(introduction)
-                .website(website)
-                .build();
+    @Builder
+    public MemberPublicProfileDto(String emailId, String firstName, String lastName, String password, String introduction, String website) {
+        this.emailId = emailId;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.introduction = introduction;
+        this.website = website;
     }
 
 }
