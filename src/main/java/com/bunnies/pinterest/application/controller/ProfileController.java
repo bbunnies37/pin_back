@@ -37,4 +37,10 @@ public class ProfileController {
     public String updatePublicProfile(@RequestBody MemberPublicProfileDto requestDto) {
         return memberService.update(requestDto);
     }
+
+    //회원 탈퇴
+    @DeleteMapping("/{emailId}")
+    public int delete(@PathVariable String emailId){
+        return memberService.delete(emailId);
+    }
 }

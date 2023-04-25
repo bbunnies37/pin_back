@@ -61,11 +61,19 @@ public class MemberService {
     @Transactional
     public String update(MemberPublicProfileDto requestDto) {
         String emailId = requestDto.getEmailId();
-        Member member = memberRepository.findByEmailId(emailId)
+        var member = memberRepository.findByEmailId(emailId)
                 .orElseThrow(() ->
                         new IllegalArgumentException("해당 아이디가 존재하지 않습니다. emailId = " + emailId));
         member.update(requestDto.getEmailId(), requestDto.getFirstName(), requestDto.getLastName(), requestDto.getIntroduction(), requestDto.getWebsite());
         memberRepository.save(member);
         return member.getEmailId();
+    }
+
+    public int delete(String emailId) {
+        var member = memberRepository.findByEmailId(emailId)
+                .orElseThrow(() ->
+                        new IllegalArgumentException("해당 아이디가 존재하지 않습니다. emailId = " + emailId));
+        memberRepository.delete(member);
+        return 1;
     }
 }
